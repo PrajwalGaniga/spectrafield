@@ -1,0 +1,326 @@
+:root {
+  /* Skeuomorphic & Neumorphic Tactile Cream Palette (Exact Reference from Image) */
+  --chassis-bg: #EAE6DF;
+  --chassis-surface: #EFECE6;
+  --chassis-surface-light: #F7F5F0;
+  --chassis-groove: #DDD8CE;
+  --chassis-dark: #C8C2B5;
+
+  /* Neumorphic Lighting & Shadows */
+  --bevel-light: rgba(255, 255, 255, 0.95);
+  --bevel-shadow: rgba(162, 154, 140, 0.42);
+  --bevel-dark-shadow: rgba(120, 112, 98, 0.35);
+
+  /* Extruded Element Shadows (Push-out effect) */
+  --shadow-extruded: -4px -4px 9px var(--bevel-light), 5px 5px 12px var(--bevel-shadow);
+  --shadow-extruded-sm: -2px -2px 6px var(--bevel-light), 3px 3px 7px var(--bevel-shadow);
+  --shadow-extruded-lg: -6px -6px 14px var(--bevel-light), 8px 8px 18px var(--bevel-shadow);
+
+  /* Inset / Recessed Element Shadows (Pushed-in well effect) */
+  --shadow-recessed: inset 3px 3px 6px rgba(150, 142, 128, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  --shadow-recessed-deep: inset 4px 4px 8px rgba(130, 122, 108, 0.55), inset -4px -4px 8px rgba(255, 255, 255, 0.95);
+
+  /* Accent Button Gradients (from reference image) */
+  --grad-amber: linear-gradient(180deg, #FDE69E 0%, #F5C04E 40%, #E29B27 100%);
+  --grad-amber-hover: linear-gradient(180deg, #FEECB2 0%, #F8CB64 40%, #EAA937 100%);
+  --grad-green: linear-gradient(180deg, #BCE48C 0%, #90CB56 40%, #6EAA38 100%);
+  --grad-green-hover: linear-gradient(180deg, #C9EB9D 0%, #9DD466 40%, #7CB644 100%);
+  --grad-metallic: linear-gradient(180deg, #FFFFFF 0%, #EAE6DF 60%, #DDD8CE 100%);
+  --grad-metallic-pressed: linear-gradient(180deg, #DDD8CE 0%, #EAE6DF 60%, #FFFFFF 100%);
+
+  /* LED Jewels */
+  --led-amber: #F59E0B;
+  --led-amber-glow: 0 0 10px #F59E0B, 0 0 18px rgba(245, 158, 11, 0.6);
+  --led-green: #22C55E;
+  --led-green-glow: 0 0 10px #22C55E, 0 0 18px rgba(34, 197, 94, 0.6);
+  --led-red: #EF4444;
+  --led-red-glow: 0 0 10px #EF4444, 0 0 18px rgba(239, 68, 68, 0.6);
+
+  /* Typography Colors */
+  --text-primary: #38352F;
+  --text-secondary: #746F66;
+  --text-muted: #9E988D;
+  --text-engraved: #5C5850;
+  --text-amber: #87550B;
+  --text-green: #2B570F;
+
+  /* Fonts */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--chassis-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  background-image: 
+    radial-gradient(#D6D0C3 1px, transparent 1px),
+    radial-gradient(#D6D0C3 1px, #EAE6DF 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skeuomorphic Tactile Panels */
+.tactile-panel {
+  background: var(--chassis-surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow-extruded);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tactile-well {
+  background: #E5E1D8;
+  border-radius: 14px;
+  box-shadow: var(--shadow-recessed);
+  border: 1px solid rgba(175, 167, 153, 0.35);
+}
+
+.tactile-well-deep {
+  background: #DDD8CE;
+  border-radius: 14px;
+  box-shadow: var(--shadow-recessed-deep);
+  border: 1px solid rgba(160, 152, 138, 0.45);
+}
+
+/* Tactile Buttons */
+.btn-tactile {
+  background: var(--grad-metallic);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid #C5BFB2;
+  box-shadow: var(--shadow-extruded-sm);
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.btn-tactile:hover:not(:disabled) {
+  background: var(--chassis-surface-light);
+  transform: translateY(-1px);
+  box-shadow: -3px -3px 8px var(--bevel-light), 4px 4px 10px var(--bevel-shadow);
+}
+
+.btn-tactile:active:not(:disabled),
+.btn-tactile.active {
+  background: var(--chassis-groove);
+  box-shadow: var(--shadow-recessed);
+  transform: translateY(1px);
+  border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-tactile:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Amber Golden Primary Action Button */
+.btn-tactile-amber {
+  background: var(--grad-amber);
+  color: #4A2B00;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid #FFE49E;
+  border-bottom: 2px solid #B7740C;
+  box-shadow: -2px -2px 6px var(--bevel-light), 3px 3px 8px rgba(183, 116, 12, 0.35);
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-family: var(--font-main);
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.btn-tactile-amber:hover:not(:disabled) {
+  background: var(--grad-amber-hover);
+  transform: translateY(-1px);
+  box-shadow: -3px -3px 8px var(--bevel-light), 4px 4px 12px rgba(183, 116, 12, 0.45);
+}
+
+.btn-tactile-amber:active:not(:disabled) {
+  background: #E29B27;
+  box-shadow: inset 2px 2px 5px rgba(110, 68, 3, 0.5), inset -2px -2px 5px rgba(255, 255, 255, 0.3);
+  transform: translateY(1px);
+}
+
+/* Green Action Button */
+.btn-tactile-green {
+  background: var(--grad-green);
+  color: #173802;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid #DCF8B6;
+  border-bottom: 2px solid #558727;
+  box-shadow: -2px -2px 6px var(--bevel-light), 3px 3px 8px rgba(85, 135, 39, 0.35);
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.btn-tactile-green:hover:not(:disabled) {
+  background: var(--grad-green-hover);
+  transform: translateY(-1px);
+}
+
+.btn-tactile-green:active:not(:disabled) {
+  background: #6EAA38;
+  box-shadow: inset 2px 2px 5px rgba(35, 60, 10, 0.5);
+  transform: translateY(1px);
+}
+
+/* Rotary Knob Dial Component */
+.tactile-knob {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #EAE6DF 55%, #D4CEC2 100%);
+  box-shadow: -3px -3px 8px var(--bevel-light), 6px 6px 14px var(--bevel-shadow), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+  border: 2px solid #E2DCD0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  cursor: grab;
+  user-select: none;
+}
+
+.tactile-knob-notch {
+  position: absolute;
+  top: 8px;
+  width: 4px;
+  height: 12px;
+  background: #7A7468;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* LED Pinpoints */
+.led-jewel {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.led-jewel.amber {
+  background: var(--led-amber);
+  box-shadow: var(--led-amber-glow);
+}
+
+.led-jewel.green {
+  background: var(--led-green);
+  box-shadow: var(--led-green-glow);
+}
+
+.led-jewel.red {
+  background: var(--led-red);
+  box-shadow: var(--led-red-glow);
+}
+
+.led-jewel.off {
+  background: #B8B2A4;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Spotlight Highlight Animation for Guided Storytelling */
+@keyframes focusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.55), var(--shadow-extruded); }
+  50% { box-shadow: 0 0 0 8px rgba(232, 168, 56, 0.25), var(--shadow-extruded-lg); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.55), var(--shadow-extruded); }
+}
+
+.spotlight-active {
+  animation: focusPulse 2.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #EAA937 !important;
+}
+
+/* Engraved Text styling */
+.text-engraved {
+  color: #656056;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Code & Hash display in recessed groove */
+.hash-recessed {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #3C3830;
+  background: #DDD8CE;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-recessed);
+  border: 1px solid rgba(175, 167, 153, 0.4);
+  word-break: break-all;
+}
+
+/* Handheld Phone Screen Glass reflection */
+.phone-glass-screen {
+  background: #11141E;
+  border-radius: 28px;
+  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.8), inset -2px -2px 6px rgba(255, 255, 255, 0.1);
+  border: 3px solid #2A2D3A;
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-glass-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EAE6DF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4BEB1;
+  border-radius: 4px;
+  border: 2px solid #EAE6DF;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #AFA899;
+}
