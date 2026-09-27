@@ -95,9 +95,10 @@ export default function TestHistoryView({ records, onSelectRecordForVerification
 
       {/* Records Table / List */}
       <div className="tactile-panel" style={{ overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-          <thead>
-            <tr style={{
+        <div className="mobile-scroll-x">
+          <table style={{ width: '100%', minWidth: 680, borderCollapse: 'collapse', textAlign: 'left' }}>
+            <thead>
+              <tr style={{
               background: '#E7E3DA',
               borderBottom: '1px solid #D5CFC3',
               fontSize: 11,
@@ -213,7 +214,9 @@ export default function TestHistoryView({ records, onSelectRecordForVerification
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );
 }
+

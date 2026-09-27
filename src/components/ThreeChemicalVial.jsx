@@ -167,29 +167,45 @@ export default function ThreeChemicalVial({
     vialGroup.add(dropletMesh);
     dropletMeshRef.current = dropletMesh;
 
-    // Mouse Interaction (Click & Drag to Rotate)
+    // Mouse & Touch Interaction (Click/Touch & Drag to Rotate)
     let isDragging = false;
-    let prevMousePos = { x: 0, y: 0 };
+    let prevPos = { x: 0, y: 0 };
 
-    const onMouseDown = (e) => {
+    const onStart = (clientX, clientY) => {
       isDragging = true;
-      prevMousePos = { x: e.clientX, y: e.clientY };
+      prevPos = { x: clientX, y: clientY };
     };
 
-    const onMouseMove = (e) => {
+    const onMove = (clientX, clientY) => {
       if (!isDragging) return;
-      const deltaX = e.clientX - prevMousePos.x;
-      const deltaY = e.clientY - prevMousePos.y;
+      const deltaX = clientX - prevPos.x;
+      const deltaY = clientY - prevPos.y;
       vialGroup.rotation.y += deltaX * 0.01;
       vialGroup.rotation.x = Math.max(-0.4, Math.min(0.4, vialGroup.rotation.x + deltaY * 0.01));
-      prevMousePos = { x: e.clientX, y: e.clientY };
+      prevPos = { x: clientX, y: clientY };
     };
 
-    const onMouseUp = () => { isDragging = false; };
+    const onEnd = () => { isDragging = false; };
+
+    const onMouseDown = (e) => onStart(e.clientX, e.clientY);
+    const onMouseMove = (e) => onMove(e.clientX, e.clientY);
+    const onMouseUp = () => onEnd();
+
+    const onTouchStart = (e) => {
+      if (e.touches.length > 0) onStart(e.touches[0].clientX, e.touches[0].clientY);
+    };
+    const onTouchMove = (e) => {
+      if (e.touches.length > 0) onMove(e.touches[0].clientX, e.touches[0].clientY);
+    };
+    const onTouchEnd = () => onEnd();
 
     container.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
+
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd);
 
     // 7. Render Loop
     let animationFrameId;
@@ -218,11 +234,27 @@ export default function ThreeChemicalVial({
 
     animate();
 
+    // Dynamic resize handler for responsive mobile scaling
+    const handleResize = () => {
+      if (!container || !renderer || !camera) return;
+      const newWidth = container.clientWidth || 320;
+      const newHeight = 300;
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(newWidth, newHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
       container.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
+      container.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
       if (renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }

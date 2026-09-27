@@ -89,12 +89,13 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Tactile Inset Tabs (Skeuomorphic Radio Switcher) */}
-        <div className="tactile-well" style={{
+        {/* Tactile Inset Tabs (Skeuomorphic Radio Switcher) with horizontal touch-scroll on mobile */}
+        <div className="tactile-well mobile-scroll-x" style={{
           display: 'flex',
           alignItems: 'center',
           padding: 4,
-          gap: 4
+          gap: 4,
+          maxWidth: '100%'
         }}>
           {[
             { id: 'test', label: '1. Handheld Field Station', icon: Compass },
@@ -116,9 +117,11 @@ export default function Navbar({
                   borderBottom: isActive ? '2px solid #558727' : '1px solid transparent',
                   boxShadow: isActive ? 'inset 1px 1px 3px rgba(0,0,0,0.2)' : 'none',
                   textShadow: isActive ? '0 1px 0 rgba(255,255,255,0.4)' : 'none',
-                  padding: '8px 14px',
+                  padding: '7px 12px',
                   borderRadius: 8,
-                  fontSize: 12
+                  fontSize: 12,
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
                 <Icon size={14} color={isActive ? '#173802' : 'currentColor'} />
@@ -129,7 +132,7 @@ export default function Navbar({
         </div>
 
         {/* Role Selector & Demo Autoplay Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           {/* Active Persona Badge */}
           <div className="tactile-panel" style={{
             display: 'flex',

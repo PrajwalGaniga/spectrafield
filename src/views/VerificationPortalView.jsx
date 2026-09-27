@@ -139,7 +139,7 @@ export default function VerificationPortalView({
       </div>
 
       {/* Main 2-Column Audit Workspace */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 24 }}>
+      <div className="grid-responsive-audit">
         
         {/* Left Column: 5-Point Parity Results */}
         <div>

@@ -154,7 +154,7 @@ export default function FieldOfficerTestView({
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="mobile-scroll-x" style={{ display: 'flex', alignItems: 'center', gap: 6, maxWidth: '100%' }}>
             {[
               { num: 0, label: '1. Setup & GPS' },
               { num: 1, label: '2. 3D Reaction & Capture' },
@@ -168,6 +168,8 @@ export default function FieldOfficerTestView({
                 style={{
                   padding: '6px 12px',
                   fontSize: 11.5,
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
                   background: step === s.num ? 'var(--grad-amber)' : undefined,
                   color: step === s.num ? '#4A2B00' : undefined
                 }}
@@ -180,7 +182,7 @@ export default function FieldOfficerTestView({
       </div>
 
       {/* Main Dual-Column Workspace: Left = Handheld Mobile Terminal, Right = 3D Vial & Controls */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(340px, 420px) 1fr', gap: 28, alignItems: 'start' }}>
+      <div className="grid-responsive-workspace">
         
         {/* Left Column: Rugged Handheld Phone Template */}
         <div className={activeSpotlight === 'phone' ? 'spotlight-active' : ''} style={{ borderRadius: 48, transition: 'all 0.3s' }}>

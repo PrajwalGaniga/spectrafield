@@ -103,7 +103,7 @@ export default function SupervisorDashboardView({ records, auditLogs, onSelectRe
       </div>
 
       {/* Main 2-Column: Seizures Registry & Immutable Access Ledger */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24 }}>
+      <div className="grid-responsive-2col">
         
         {/* Left Column: Recent Certified Seizures */}
         <div className="tactile-panel" style={{ padding: 22 }}>

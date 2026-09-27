@@ -324,3 +324,93 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #AFA899;
 }
+
+/* ==========================================================================
+   Mobile Responsiveness & Adaptive Layout Rules
+   ========================================================================== */
+
+.grid-responsive-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-responsive-workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.grid-responsive-audit {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+}
+
+.mobile-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Tablets and Mobile (<= 860px) */
+@media (max-width: 860px) {
+  .grid-responsive-2col,
+  .grid-responsive-workspace,
+  .grid-responsive-audit {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .tactile-panel {
+    padding: 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .tactile-well {
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  body {
+    background-size: 16px 16px;
+  }
+
+  .navbar-container {
+    padding: 8px 12px !important;
+  }
+
+  .btn-tactile,
+  .btn-tactile-amber,
+  .btn-tactile-green {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Make sure handheld phone scales safely on 320px-375px screens */
+  .handheld-chassis {
+    padding: 12px 8px 18px !important;
+    border-radius: 32px !important;
+    max-width: 100% !important;
+  }
+
+  .phone-glass-screen {
+    border-radius: 20px !important;
+    min-height: 480px !important;
+  }
+
+  /* Stack button bars */
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+

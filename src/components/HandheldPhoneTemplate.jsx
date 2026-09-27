@@ -19,9 +19,10 @@ export default function HandheldPhoneTemplate({
   onPhysicalShutter = null
 }) {
   return (
-    <div style={{
+    <div className="handheld-chassis" style={{
       position: 'relative',
-      maxWidth: 390,
+      maxWidth: 'min(390px, 100%)',
+      width: '100%',
       margin: '0 auto',
       padding: '16px 12px 24px',
       background: 'linear-gradient(180deg, #F5F2EB 0%, #E2DDD2 100%)',

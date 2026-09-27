@@ -111,7 +111,7 @@ export default function StoryDirector({
       </div>
 
       {/* Main Narrative & Spotlight Instructions */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 20 }}>
+      <div className="grid-responsive-2col">
         {/* Story Context & Active Focus */}
         <div>
           <p style={{ fontSize: 13.5, color: 'var(--text-primary)', lineHeight: 1.6, marginBottom: 10 }}>
@@ -125,10 +125,12 @@ export default function StoryDirector({
             padding: '6px 12px',
             background: 'rgba(234, 169, 55, 0.15)',
             border: '1px solid rgba(234, 169, 55, 0.4)',
-            borderRadius: 8
+            borderRadius: 8,
+            maxWidth: '100%',
+            flexWrap: 'wrap'
           }}>
             <Sparkles size={14} color="var(--text-amber)" />
-            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-amber)' }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-amber)', wordBreak: 'break-word' }}>
               Active Focus Target: {chapterData?.focusTarget}
             </span>
           </div>
